@@ -1,22 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=devive-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil saya</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
+
 <body>
-    <h1>Ulya Naszura</h1>h1></h1>
-    <p>Saya seorang siswi MAN 3 Tulungagung yang sedang belajar Rekayasa Perangkat Lunak (RPL)</p>
-    <img src="jihoon ku.png" alt="photp profile"
-    height="150px"  />
-    <section>
-        <h2>Hobi</h2>
-        <ul>
+    <div class="page">
+        <header class="hero">
+            <div class="profile-content">
+                <span class="badge" style="color:black">Web Profile</span>
+                <h1 id="text1" class="judul judul-besar" style="color:rgb(0, 0, 0)">Ulya Naszura</h1>
+                <p id="text2" style="color: rgb(0, 0, 0)">Saya seorang siswi MAN 3 Tulungagung yang sedang
+                    belajar Rekayasa Perangkat Lunak(RPL)</p>
+                </p>
+            </div>
+            <img class="profile-photo" src="jihoon ku.png" alt="photo profile" height="200x">
+        </header>
+
+        <main class="content-grid">...
+    <section class="card">
+        <h2 style="color:rgb(14, 13, 13)">Hobi</h2>
+        <ul class="hobby-list">
             <li>Mendengarkan lagu</li>
             <li>Yoga</li>
+            <li>Berenang</li>
         </ul>
     </section>
+    -                                                                                                                                                                                                                                     
     <section>
         <h2>cita cita</h2>
         <ul>
@@ -32,21 +45,22 @@
         <Form>
             <label>Nama:</label>
             <input type="text" placeholder="Masukkan nama anda!">
-            
+
             <label>Pesan</label>
             <input type="text" aria-placeholder="Masukkan pesan anda!">
-            
+
             <button type="submit">Kirim Pesan</button>
         </Form>
     </section>
     <!-- Jadwal Pelajaran -->
-     <table border="1">
+    <table border="1">
         <thead>
             <tr>
                 <td>Hari</td>
                 <td>Mata Pelajaran</td>
             </tr>
         </thead>
+
         <body>
             <tr>
                 <td rowspan="6">Senin</td>
@@ -137,7 +151,6 @@
             <tr>
             </tr>
         </tfoot>
-     </table>
+    </table>
 </body>
-
 </html>
