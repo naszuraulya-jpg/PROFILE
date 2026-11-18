@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew & Bean Coffee Shop</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #3b2f2f;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(30, 20, 15, 0.95);
+            padding: 12px 60px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .navbar .logo span {
+            color: #d4a574;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4a574;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #d4a574;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #fff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(20, 12, 8, 0.85), rgba(60, 35, 20, 0.75)),
+                        url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1920') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, #fff, transparent);
+        }
+
+        .hero-content {
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content .tagline {
+            font-size: 1rem;
+            color: #d4a574;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            color: #fff;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-content h1 span {
+            color: #d4a574;
+            display: block;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: #e0d5cc;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 15px 40px;
+            background: #d4a574;
+            color: #1e140f;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background: #c4915e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 15px 40px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #d4a574;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-secondary:hover {
+            background: #d4a574;
+            color: #1e140f;
+            transform: translateY(-3px);
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section {
+            padding: 100px 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header .subtitle {
+            color: #d4a574;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: #1e140f;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            color: #6b5b50;
+            max-width: 550px;
+            margin: 15px auto 0;
+            font-size: 1.05rem;
+        }
+
+        /* ===== KEUNGGULAN SECTION ===== */
+        .keunggulan {
+            background: #faf6f2;
+        }
+
+        .keunggulan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .keunggulan-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: #fff;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .keunggulan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .keunggulan-card .icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #d4a574, #c4915e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+        }
+
+        .keunggulan-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #1e140f;
+        }
+
+        .keunggulan-card p {
+            color: #6b5b50;
+            font-size: 0.95rem;
+        }
+
+        /* ===== PRODUK SECTION ===== */
+        .produk {
+            background: #fff;
+        }
+
+        .produk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .produk-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            background: #fff;
+        }
+
+        .produk-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .produk-card .produk-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .produk-card .produk-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+        }
+
+        .produk-card .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #d4a574;
+            color: #1e140f;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .produk-card .produk-info {
+            padding: 25px;
+        }
+
+        .produk-card .produk-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: #1e140f;
+        }
+
+        .produk-card .produk-info p {
+            color: #6b5b50;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .produk-card .produk-info .price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #d4a574;
+        }
+
+        .produk-card .produk-info .price small {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        /* ===== TESTIMONI SECTION ===== */
+        .testimoni {
+            background: linear-gradient(135deg, #1e140f, #3b2518);
+            color: #fff;
+        }
+
+        .testimoni .section-header h2 {
+            color: #fff;
+        }
+
+        .testimoni .section-header p {
+            color: #c4b5a8;
+        }
+
+        .testimoni-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimoni-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimoni-card {
+            min-width: 100%;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .testimoni-card .stars {
+            color: #d4a574;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .testimoni-card blockquote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #e8ddd4;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .testimoni-card .author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .testimoni-card .author-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #d4a574;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e140f;
+        }
+
+        .testimoni-card .author-info h4 {
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .testimoni-card .author-info span {
+            font-size: 0.85rem;
+            color: #a89585;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 165, 116, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slider-dot.active {
+            background: #d4a574;
+            transform: scale(1.2);
+        }
+
+        /* ===== KONTAK SECTION ===== */
+        .kontak {
+            background: #faf6f2;
+        }
+
+        .kontak-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .kontak-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #1e140f;
+        }
+
+        .kontak-info p {
+            color: #6b5b50;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .kontak-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .kontak-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .kontak-item .icon-box {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d4a574, #c4915e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .kontak-item .text h4 {
+            font-size: 0.95rem;
+            color: #1e140f;
+            margin-bottom: 3px;
+        }
+
+        .kontak-item .text span {
+            font-size: 0.9rem;
+            color: #6b5b50;
+        }
+
+        .kontak-form {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .kontak-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .kontak-form label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1e140f;
+            font-size: 0.9rem;
+        }
+
+        .kontak-form input,
+        .kontak-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e8ddd4;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .kontak-form input:focus,
+        .kontak-form textarea:focus {
+            border-color: #d4a574;
+        }
+
+        .kontak-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .kontak-form button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #d4a574, #c4915e);
+            color: #1e140f;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kontak-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #1e140f;
+            color: #c4b5a8;
+            padding: 80px 60px 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+        }
+
+        .footer-col h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-col .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-col .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 165, 116, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4a574;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .footer-col .social-links a:hover {
+            background: #d4a574;
+            color: #1e140f;
+            transform: translateY(-3px);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #a89585;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #d4a574;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(196, 181, 168, 0.15);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6b5b50;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #d4a574;
+            color: #1e140f;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(212, 165, 116, 0.4);
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 15px 30px;
+            }
+
+            .section {
+                padding: 70px 30px;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .kontak-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(30, 20, 15, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: right 0.4s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .hamburger {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer {
+                padding: 60px 30px 30px;
+            }
+
+            .testimoni-card {
+                padding: 30px 15px;
+            }
+
+            .testimoni-card blockquote {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">Brew<span>&</span>Bean</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero">Beranda</a></li>
+            <li><a href="#keunggulan">Keunggulan</a></li>
+            <li><a href="#produk">Menu</a></li>
+            <li><a href="#testimoni">Testimoni</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <p class="tagline">☕ Premium Coffee Experience</p>
+            <h1>Nikmati Secangkir <span>Kebahagiaan</span></h1>
+            <p>Biji kopi pilihan dari perkebunan terbaik Indonesia, diolah dengan penuh cinta oleh barista profesional kami untuk menghadirkan cita rasa yang tak terlupakan.</p>
+            <div class="hero-buttons">
+                <a href="#produk" class="btn-primary">Lihat Menu</a>
+                <a href="#kontak" class="btn-secondary">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== KEUNGGULAN SECTION ===== -->
+    <section class="section keunggulan" id="keunggulan">
+        <div class="section-header animate-on-scroll">
+            <p class="subtitle">Mengapa Memilih Kami</p>
+            <h2>Keunggulan Kami</h2>
+            <p>Kami berkomitmen memberikan pengalaman kopi terbaik dengan standar kualitas tertinggi</p>
+        </div>
+        <div class="keunggulan-grid">
+            <div class="keunggulan-card animate-on-scroll">
+                <div class="icon">🌱</div>
+                <h3>Biji Kopi Premium</h3>
+                <p>100% biji kopi arabika pilihan dari Gayo, Toraja, dan Kintamani yang dipanen pada kematangan sempurna.</p>
+            </div>
+            <div class="keunggulan-card animate-on-scroll">
+                <div class="icon">👨‍🍳</div>
+                <h3>Barista Profesional</h3>
+                <p>Tim barista bersertifikat dengan pengalaman lebih dari 24 tahun dalam meracik kopi berkualitas tinggi.</p>
+            </div>
+            <div class="keunggulan-card animate-on-scroll">
+                <div class="icon">🏠</div>
+                <h3>Suasana Nyaman</h3>
+                <p>Interior hangat dan cozy yang dirancang khusus untuk membuat Anda betah berlama-lama menikmati kopi.</p>
+            </div>
+            <div class="keunggulan-card animate-on-scroll">
+                <div class="icon">⚡</div>
+                <h3>Penyajian Cepat</h3>
+                <p>Proses pembuatan yang efisien tanpa mengorbankan kualitas, kopi Anda siap dalam 5 menit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUK SECTION ===== -->
+    <section class="section produk" id="produk">
+        <div class="section-header animate-on-scroll">
+            <p class="subtitle">Menu Favorit</p>
+            <h2>Produk Kami</h2>
+            <p>Pilihan menu kopi dan minuman spesial yang siap memanjakan lidah Anda</p>
+        </div>
+        <div class="produk-grid">
+            <div class="produk-card animate-on-scroll">
+                <div class="produk-img" style="background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600')">
+                    <span class="badge">Best Seller</span>
+                </div>
+                <div class="produk-info">
+                    <h3>Cappuccino Classic</h3>
+                    <p>Espresso sempurna dengan steamed milk dan foam lembut yang creamy.</p>
+                    <span class="price">Rp 35.000 <small>/ cup</small></span>
+                </div>
+            </div>
+            <div class="produk-card animate-on-scroll">
+                <div class="produk-img" style="background-image: url('https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600')">
+                    <span class="badge">New</span>
+                </div>
+                <div class="produk-info">
+                    <h3>Caramel Macchiato</h3>
+                    <p>Perpaduan espresso, vanilla, dan caramel sauce yang manis dan memikat.</p>
+                    <span class="price">Rp 42.000 <small>/ cup</small></span>
+                </div>
+            </div>
+            <div class="produk-card animate-on-scroll">
+                <div class="produk-img" style="background-image: url('https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600')">
+                    <span class="badge">Popular</span>
+                </div>
+                <div class="produk-info">
+                    <h3>Espresso Single Origin</h3>
+                    <p>Kopi murni dari biji Gayo Aceh dengan karakter bold dan fruity.</p>
+                    <span class="price">Rp 28.000 <small>/ cup</small></span>
+                </div>
+            </div>
+            <div class="produk-card animate-on-scroll">
+                <div class="produk-img" style="background-image: url('https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=600')">
+                    <span class="badge">Favorite</span>
+                </div>
+                <div class="produk-info">
+                    <h3>Matcha Latte</h3>
+                    <p>Matcha premium dari Jepang dengan susu segar dan sentuhan madu alami.</p>
+                    <span class="price">Rp 38.000 <small>/ cup</small></span>
+                </div>
+            </div>
+            <div class="produk-card animate-on-scroll">
+                <div class="produk-img" style="background-image: url('https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=600')">
+                    <span class="badge">Cold</span>
+                </div>
+                <div class="produk-info">
+                    <h3>Cold Brew Coffee</h3>
+                    <p>Diseduh dingin selama 18 jam untuk rasa yang smooth dan rendah asam.</p>
+                    <span class="price">Rp 32.000 <small>/ cup</small></span>
+                </div>
+            </div>
+            <div class="produk-card animate-on-scroll">
+                <div class="produk-img" style="background-image: url('https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600')">
+                    <span class="badge">Special</span>
+                </div>
+                <div class="produk-info">
+                    <h3>Affogato Dessert</h3>
+                    <p>Espresso panas dituang di atas vanilla gelato, perpaduan sempurna.</p>
+                    <span class="price">Rp 45.000 <small>/ serving</small></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONI SECTION ===== -->
+    <section class="section testimoni" id="testimoni">
+        <div class="section-header animate-on-scroll">
+            <p class="subtitle">Apa Kata Mereka</p>
+            <h2>Testimoni Pelanggan</h2>
+            <p>Cerita nyata dari pelanggan setia kami yang telah merasakan pengalaman kopi terbaik</p>
+        </div>
+        <div class="testimoni-slider animate-on-scroll">
+            <div class="testimoni-track" id="testimoniTrack">
+                <div class="testimoni-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Kopi terbaik yang pernah saya coba di kota ini. Tempatnya tenang dan banyak spot fotonya"</blockquote>
+                    <div class="author">
+                        <div class="author-avatar">AR</div>
+                        <div class="author-info">
+                            <h4>Michael Jackson</h4>
+                            <span>Mafia</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimoni-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Kopinya terasa fresh enak sekali! tempatnya tenang cocok untuk orang yang suka meditasi seperti saya."</blockquote>
+                    <div class="author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Harry Poter</h4>
+                            <span>Dukun</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimoni-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Tempatnya nyaman sekali, pelayanannya juga ramah...ownernya cantik saya suka."</blockquote>
+                    <div class="author">
+                        <div class="author-avatar">BW</div>
+                        <div class="author-info">
+                            <h4>Terrifier</h4>
+                            <span>psikolog</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimoni-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Rasanya jos jis!I suka banget deh,cocok dilidah orang have kaya i."</blockquote>
+                    <div class="author">
+                        <div class="author-avatar">DN</div>
+                        <div class="author-info">
+                            <h4>Elizabeth</h4>
+                            <span>Ratu Inggris</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls" id="sliderControls">
+                <div class="slider-dot active" data-index="0"></div>
+                <div class="slider-dot" data-index="1"></div>
+                <div class="slider-dot" data-index="2"></div>
+                <div class="slider-dot" data-index="3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== KONTAK SECTION ===== -->
+    <section class="section kontak" id="kontak">
+        <div class="section-header animate-on-scroll">
+            <p class="subtitle">Hubungi Kami</p>
+            <h2>Kontak</h2>
+            <p>Kami siap melayani Anda. Jangan ragu untuk menghubungi kami!</p>
+        </div>
+        <div class="kontak-wrapper">
+            <div class="kontak-info animate-on-scroll">
+                <h3>Mari Terhubung!</h3>
+                <p>Punya pertanyaan, saran, atau ingin reservasi tempat? Hubungi kami melalui form atau informasi di bawah ini.</p>
+                <div class="kontak-detail">
+                    <div class="kontak-item">
+                        <div class="icon-box">📍</div>
+                        <div class="text">
+                            <h4>Alamat</h4>
+                            <span>Jl. RayaKarangsari Kecamatan Rejotangan Kabupaten Tulungagung</span>
+                        </div>
+                    </div>
+                    <div class="kontak-item">
+                        <div class="icon-box">📞</div>
+                        <div class="text">
+                            <h4>Telepon</h4>
+                            <span>+62 815-1598-2699</span>
+                        </div>
+                    </div>
+                    <div class="kontak-item">
+                        <div class="icon-box">✉️</div>
+                        <div class="text">
+                            <h4>Email</h4>
+                            <span>naszuraulyaa10@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="kontak-item">
+                        <div class="icon-box">🕐</div>
+                        <div class="text">
+                            <h4>Jam Operasional</h4>
+                            <span>Senin - Minggu:24 jam</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="kontak-form animate-on-scroll" id="contactForm">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Masukkan email Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="subjek">Subjek</label>
+                    <input type="text" id="subjek" placeholder="Subjek pesan">
+                </div>
+                <div class="form-group">
+                    <label for="pesan">Pesan</label>
+                    <textarea id="pesan" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                </div>
+                <button type="submit">Kirim Pesan ☕</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Brew<span style="color:#d4a574">&</span>Bean</h3>
+                <p>Coffee shop premium yang menghadirkan pengalaman kopi terbaik dengan biji kopi pilihan dari seluruh nusantara. Setiap cangkir adalah karya seni.</p>
+                <div class="social-links">
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="Facebook">👤</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="TikTok">🎵</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="#">Espresso</a></li>
+                    <li><a href="#">Cappuccino</a></li>
+                    <li><a href="#">Latte</a></li>
+                    <li><a href="#">Cold Brew</a></li>
+                    <li><a href="#">Non-Coffee</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Perusahaan</h3>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Franchise</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Press Kit</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Bantuan</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Lokasi</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Brew & Bean Coffee Shop. All rights reserved. Made with ☕ and ❤️</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== NAVBAR SCROLL EFFECT =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ===== HAMBURGER MENU =====
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ===== TESTIMONI SLIDER =====
+        const track = document.getElementById('testimoniTrack');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        let autoSlideInterval;
+
+        function goToSlide(index) {
+            currentSlide = index;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                goToSlide(parseInt(dot.dataset.index));
+                resetAutoSlide();
+            });
+        });
+
+        function autoSlide() {
+            autoSlideInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % 4;
+                goToSlide(currentSlide);
+            }, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlide();
+        }
+
+        autoSlide();
+
+        // ===== SCROLL ANIMATIONS =====
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        animateElements.forEach(el => observer.observe(el));
+
+        // ===== SCROLL TO TOP BUTTON =====
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== CONTACT FORM =====
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nama = document.getElementById('nama').value;
+            const email = document.getElementById('email').value;
+            const subjek = document.getElementById('subjek').value;
+            const pesan = document.getElementById('pesan').value;
+
+            // Simple validation
+            if (nama && email && pesan) {
+                alert(`Terima kasih ${nama}! ☕\n\nPesan Anda telah terkirim.\nKami akan merespons melalui ${email} secepatnya.`);
+                contactForm.reset();
+            } else {
+                alert('Mohon lengkapi semua field yang diperlukan.');
+            }
+        });
+
+        // ===== SMOOTH REVEAL ON LOAD =====
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+
+</body>
+</html>

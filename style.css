@@ -1,12 +1,13 @@
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: 'segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #3283 0%, #06173b 35%, #311216 100%);
-    color: #040507;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #F8F4FF 0%, #EDE3FA 50%, #DCCCF2 100%);
+    color: #514264;
 }
 
 .page {
@@ -20,10 +21,10 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(14, 13, 13, 0.7);
-    box-shadow: 0 18px 40px rgba(30, 41, 59, 0.12);
+    border: 1px solid rgba(197, 175, 229, 0.5);
+    box-shadow: 0 18px 40px rgba(169, 138, 207, 0.15);
     border-radius: 28px;
     padding: 32px;
     margin-bottom: 28px;
@@ -35,7 +36,7 @@ body {
 
 .badge {
     display: inline-block;
-    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    background: linear-gradient(135deg, #C5AFE5, #A98ACF);
     color: white;
     padding: 8px 14px;
     border-radius: 999px;
@@ -47,14 +48,14 @@ body {
 
 .judul {
     margin: 0;
-    font-family: 'plus Jakarta Sans', 'Segoe UI', sans-serif;
-    line-height: 1, 4;
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    line-height: 1.4;
 }
 
 .judul-besar {
     font-size: clamp(2.3rem, 4vw, 4rem);
     font-weight: 800;
-    color: #111827;
+    color: #5B4774;
     margin-top: 14px;
 }
 
@@ -62,99 +63,87 @@ body {
     margin-top: 12px;
     max-width: 620px;
     font-size: 1.08rem;
-    color: #475569;
+    color: #81718F;
     text-align: left;
-    backround: transparent;
+    background: transparent;
 }
+
 .profile-photo {
     width: 180px;
     height: 180px;
     object-fit: cover;
     border-radius: 50%;
-    border: 5px solid rgba(124, 58, 237, 0.58);
-    box-shadow: 0 16px 30px rgba(59, 130, 246, 0.2);
+    border: 5px solid rgba(197, 175, 229, 0.65);
+    box-shadow: 0 16px 30px rgba(169, 138, 207, 0.25);
 }
 
 .content-grid {
-display:grid;
-grid-template-colums: repeat(2, min,ax(260px, lfr));
-gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 24px;
 }
 
 .card {
-background; rgba(255, 255, 255, 0.82);
-border: 1px solid rgba(148, 163, 184, 0.18);
-berder-radius: 22px;
-padding: 24px;
-box-shadow: 0 12px 28px rgba(15, 23, 42, 0);
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(212, 195, 235, 0.6);
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: 0 12px 28px rgba(169, 138, 207, 0.15);
 }
 
 .card h2 {
-margin-top: 0;
-margin-buttom: 18px;
-color: #le293b;
-font-size: 1.5rem;
+    color: #70578F;
 }
 
-.hobby list {
-list-style: none
-padding: 0;
-margin; 0;display: grid;
-gap: 12px;
+.hobby-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
 }
 
 .hobby-list li {
-background: linear-gradient(135deg, #eff6ff, #f5f3ff);
-border-left: 4px solid #7c3aed;
-padding: 12px 14px;
-border-radius: 12px;
-font-weight: 600;
-color: #312e81;
+    background: linear-gradient(135deg, #F8F4FF, #EDE3FA);
+    border-left: 4px solid #A98ACF;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #76618D;
 }
 
 .social-links {
-display: flex;
-flex-wrap: wrap;
-gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .social-links a {
-text-decoration: none;
-color: #1d4ed8;
-background: #e0edff;
-padding: 10px 14px;
-border-radius: 12px;
-font-weight: 600;
-transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    color: #70578F;
+    background: #EDE3FA;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-social-links a:hover {
-transform: translateY(-2px);
-box-shadow:0 10px 20px rgba(37, 99, 235, 0.15);
+.social-links a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(169, 138, 207, 0.2);
 }
 
 .form-card form {
-display: grid;
-gap: 16px;
+    display: grid;
+    gap: 16px;
 }
 
 .field-groups {
-display: grid;
-gap: 8px;
+    display: grid;
+    gap: 8px;
 }
 
-field-group label
-font-weigh: 600;
-color: #334155;
-
-
-
-
-
-
-
-
-
-
-
-
+.field-group label {
+    font-weight: 600;
+    color: #70578F;
+}
