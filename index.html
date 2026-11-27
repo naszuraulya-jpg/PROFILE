@@ -1,156 +1,124 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil saya</title>
-    <link rel="stylesheet" href="style.css"/>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Profile</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-    <div class="page">
-        <header class="hero">
-            <div class="profile-content">
-                <span class="badge" style="color:rgb(238, 228, 228)">Web Profile</span>
-                <h1 id="text1" class="judul judul-besar" style="color:rgb(0, 0, 0)">Ulya Naszura</h1>
-                <p id="text2" style="color: rgb(224, 155, 155)">Saya seorang siswi MAN 3 Tulungagung yang sedang
-                    belajar Rekayasa Perangkat Lunak(RPL)</p>
-                </p>
-            </div>
-            <img class="profile-photo" src="jihoon ku.png" alt="photo profile" height="200x">
-        </header>
+  <body class="page">
+    <header class="hero">
+      <div class="profile-content">
+        <span class="badge">Web Profile</span>
+        <h1 id="text1" class="judul judul-besar">Deni S</h1>
+        <p id="text2" class="judul">
+          Saya seorang siswa MAN 3 Tulungagung yang sedang belajar Rekayasa
+          Perangkat Lunak (RPL)
+        </p>
+      </div>
+      <img class="profile-photo" src="profile.jpeg" alt="photo profile" />
+    </header>
 
-        <main class="content-grid">
-    <section class="card">
-        <h2 style="color:rgb(255, 255, 255)">Hobi</h2>
+    <main class="content-grid">
+      <section class="card">
+        <h2>Hobi</h2>
         <ul class="hobby-list">
-            <li>Mendengarkan lagu</li>
-            <li>Yoga</li>
-            <li>Berenang</li>
+          <li>Berenang</li>
+          <li>Badminton</li>
         </ul>
-    </section>
-                                                                                                                                                                                                                                         
-    <section>
-        <h2>cita cita</h2>
-        <ul>
-            <li>CEO</li>
-        </ul>
-    </section>
-    <section>
+      </section>
+
+      <section class="card">
         <h2>Media Sosial</h2>
-        <a href="naszraaaa">Instagram</a>
-    </section>
-    <!--Form Kontak-->
-    <section>
-        <Form>
+        <div class="social-links">
+          <a href="#"> Youtube </a>
+          <a href="#">nnszrraa</a>
+          <a href="#">Tiktok</a>
+        </div>
+      </section>
+
+      <section class="card form-card">
+        <h2>Kontak</h2>
+        <form>
+          <div class="field-group">
             <label>Nama:</label>
-            <input type="text" placeholder="Masukkan nama anda!">
-
+            <input type="text" placeholder="Masukkan nama anda!" />
+          </div>
+          <div class="field-group">
             <label>Pesan</label>
-            <input type="text" aria-placeholder="Masukkan pesan anda!">
+            <textarea rows="4" placeholder="Masukkan pesan anda!"></textarea>
+          </div>
+          <button type="submit">Kirim Pesan</button>
+        </form>
+      </section>
 
-            <button type="submit">Kirim Pesan</button>
-        </Form>
-    </section>
-    <!-- Jadwal Pelajaran -->
-    <table border="1">
-        <thead>
+      <section class="card schedule-card">
+        <h2>Jadwal Pelajaran</h2>
+        <table>
+          <thead>
             <tr>
-                <td>Hari</td>
-                <td>Mata Pelajaran</td>
+              <th>Hari</th>
+              <th>Mata Pelajaran</th>
             </tr>
-        </thead>
-
-        <body>
+          </thead>
+          <tbody>
             <tr>
-                <td rowspan="6">Senin</td>
-                <td>Sosiologi</td>
+              <td rowspan="3">Senin</td>
+              <td>Matematika</td>
             </tr>
             <tr>
-                <td>Bahasa Inggris</td>
+              <td>Bahasa Inggris</td>
             </tr>
             <tr>
-                <td>Biologi</td>
+              <td>Bahasa Indonesia</td>
             </tr>
             <tr>
-                <td>SKI</td>
+              <td rowspan="2">Selasa</td>
+              <td>Matematika</td>
             </tr>
             <tr>
-                <td>Informatika</td>
+              <td>Bahasa Inggris</td>
             </tr>
             <tr>
-                <td>Akidah Akhlak</td>
+              <td rowspan="3">Rabu</td>
+              <td>Bahasa Jawa</td>
             </tr>
             <tr>
-                <td rowspan="6">Selasa</td>
-                <td>Penjas</td>
+              <td>Bahasa Indonesia</td>
             </tr>
             <tr>
-                <td>Kimia</td>
+              <td>Bahasa Indonesia</td>
             </tr>
             <tr>
-                <td>Matematika</td>
+              <td rowspan="3">Kamis</td>
+              <td>Bahasa Jawa</td>
             </tr>
             <tr>
-                <td>Sejarah</td>
+              <td>Bahasa Indonesia</td>
             </tr>
             <tr>
-                <td>Pancasila</td>
+              <td>Bahasa Indonesia</td>
             </tr>
             <tr>
-                <td>Bahasa Indonesia</td>
+              <td rowspan="4">Jumat</td>
+              <td>Bahasa Jawa</td>
             </tr>
             <tr>
-                <td rowspan="4">Rabu</td>
-                <td>Al qur-an hadist</td>
-            </tr>
-
-            <tr>
-                <td>Matematika TKA</td>
+              <td>Bahasa Indonesia</td>
             </tr>
             <tr>
-                <td>Bahasa Arab</td>
+              <td>Bahasa Indonesia</td>
             </tr>
             <tr>
-                <td>RPL</td>
+              <td>Bahasa Indonesia</td>
             </tr>
-            <tr>
-                <td rowspan="5">Kamis</td>
-                <td>Fiqih</td>
-            </tr>
-            <tr>
-                <td>Fisika</td>
-            </tr>
-            <tr>
-                <td>Matematika</td>
-            </tr>
-            <tr>
-                <td>Ekonomi</td>
-            </tr>
-            <tr>
-                <td>Bahasa Arab</td>
-            </tr>
-            <tr>
-                <td rowspan="5">Jumat></td>
-                <td>Geografi</td>
-            </tr>
-            <tr>
-                <td>Koding</td>
-            </tr>
-            <tr>
-                <td>Bahasa Indonesia</td>
-            </tr>
-            <tr>
-                <td>Seni budaya</td>
-            </tr>
-            <tr>
-                <td>Bahasa Inggris</td>
-            </tr>
-        </body>
-        <tfoot>
-            <tr>
-            </tr>
-        </tfoot>
-    </table>
-</body>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2026 Zura. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
